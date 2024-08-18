@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import toast from "react-hot-toast";
+import Image from "next/image";
 
 export default function LoginPage(){
     const router = useRouter();
@@ -41,6 +42,14 @@ export default function LoginPage(){
 
     return(
         <Card className="flex flex-col mx-auto max-w-lg my-10">
+            <div className="heart flex flex-col items-center py-6">
+              <Image
+                src="/heart.png"
+                alt="Picture of the author"
+                width={50}
+                height={50}
+              />
+          </div>
             <CardHeader>
             <CardTitle className="text-2xl">{loading ? "Processing" : "Login"}</CardTitle>
       <CardDescription>

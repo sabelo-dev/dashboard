@@ -81,3 +81,7 @@
     transform: scale(1);
   }
 }
+
+.heart{
+  animation: heartbeat 1s infinite;
+}

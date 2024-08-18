@@ -48,13 +48,13 @@ export default function SignupPage(){
 
     return(
         <Card className="flex flex-col mx-auto max-w-lg my-10">
-          <div className="heart flex flex-col items-center">
-          <Image
-              src="/heart.png"
-              alt="Picture of the author"
-              width={100}
-              height={100}
-            />
+          <div className="heart flex flex-col items-center py-6">
+              <Image
+                src="/heart.png"
+                alt="Picture of the author"
+                width={50}
+                height={50}
+              />
           </div>
             <CardHeader>
             <CardTitle className="text-2xl">{loading ? "Processing" : "Signup"}</CardTitle>
@@ -62,7 +62,6 @@ export default function SignupPage(){
             <CardContent>
             <div className="grid gap-4">
               <div className="grid gap-2 py-2">
-                <Label htmlFor="username">username</Label>
                 <Input
                     className="p-2 rounded-lg mb-4 focus:outline-none"
                     id="username"
@@ -75,7 +74,6 @@ export default function SignupPage(){
             </div>
             <div className="grid gap-4">
               <div className="grid gap-2 py-2">
-                <Label htmlFor="email">e-mail</Label>
                 <Input
                     className="p-2 rounded-lg mb-4 focus:outline-none"
                     id="email"
@@ -88,7 +86,6 @@ export default function SignupPage(){
             </div>
             <div className="grid gap-4">
               <div className="grid gap-2 py-2">
-                <Label htmlFor="password">password</Label>
                 <Input
                     className="p-2 rounded-lg mb-4 focus:outline-offset-2"
                     id="password"
