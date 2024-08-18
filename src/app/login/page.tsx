@@ -23,6 +23,7 @@ export default function LoginPage(){
     const onLogin = async () =>{
       try {
         setLoading(true);
+        const response = await axios.post("/api/users/login",user)
         router.push("/dashboard");
       } catch (error:any) {
 
