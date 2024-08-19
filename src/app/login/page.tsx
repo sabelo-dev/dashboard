@@ -23,7 +23,7 @@ export default function LoginPage(){
     const onLogin = async () =>{
       try {
         setLoading(true);
-        const response = await axios.post("/api/users/login",user)
+        await axios.post("/api/users/login",user)
         router.push("/dashboard");
       } catch (error:any) {
 
@@ -86,7 +86,7 @@ export default function LoginPage(){
             </div>
             <div className="grid gap-4">
               <div className="grid gap-2 py-2">
-                <Button type='submit' onClick={onLogin} className='w-full border-green-600 focus:ring-0 transition duration-150 ease-in-out'>
+                <Button type='submit' onClick={onLogin} className='border-green-600 focus:ring-0 transition duration-150 ease-in-out'>
                   Login
                 </Button>
               </div>

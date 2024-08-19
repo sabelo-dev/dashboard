@@ -42,10 +42,6 @@ export default function SignupPage(){
       }
     },[user]);
 
-    const imgStyle = {
-
-    }
-
     return(
         <Card className="flex flex-col mx-auto max-w-lg my-10">
           <div className="heart flex flex-col items-center py-6">
