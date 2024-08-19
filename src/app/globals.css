@@ -73,8 +73,12 @@
     transform: scale(1);
   }
 
-  50%{
+
+  45%{
     transform: scale(1.25);
+  }
+  65%{
+    transform: scale(0.75);
   }
 
   100%{

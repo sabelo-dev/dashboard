@@ -50,7 +50,7 @@ export default function LoginPage(){
                 width={50}
                 height={50}
               />
-          </div>
+            </div>
             <CardHeader>
             <CardTitle className="text-2xl">{loading ? "Processing" : "Login"}</CardTitle>
       <CardDescription>

@@ -1,8 +1,6 @@
 import Layout from "@/components/Layout"
 
-export default function Dashboard(){
-    
-    
+export default function Settings(){ 
     return(
         <Layout>
             test
