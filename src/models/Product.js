@@ -12,6 +12,9 @@ const ProductSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    imageUrl: { 
+        type: String 
+    }
 });
 
 const Product = mongoose.models.Product || mongoose.model("Product", ProductSchema);

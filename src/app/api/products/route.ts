@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
         await dbConnect();
         
         const reqBody = await request.json();
-        const { title, description, price } = reqBody;
+        const { title, description, price, imageUrl } = reqBody;
 
         if (!title || !description || !price) {
             return NextResponse.json({ message: "All fields are required", success: false }, { status: 400 });
@@ -17,6 +17,7 @@ export async function POST(request: NextRequest) {
             title,
             description,
             price,
+            imageUrl,
         });
 
         const savedProduct = await newProduct.save();
@@ -33,3 +34,23 @@ export async function POST(request: NextRequest) {
         }, { status: 500 });
     }
 }
+
+export async function GET(request: NextRequest){
+    try {
+        await dbConnect();
+        
+        const products = await Product.find({});
+        
+        return NextResponse.json({
+            message: "Products retrieved successfully",
+            success: true,
+            products,
+        });
+    } catch (error) {
+        return NextResponse.json({
+            message: "Failed to retrieve products",
+            success: false,
+        }, { status: 500 });
+    }
+}
+

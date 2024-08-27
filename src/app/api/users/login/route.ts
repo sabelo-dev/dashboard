@@ -1,5 +1,5 @@
 import dbConnect from "@/lib/mongodb";
-import User from "@/models/userModel";
+import User from "@/models/User";
 import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken"
