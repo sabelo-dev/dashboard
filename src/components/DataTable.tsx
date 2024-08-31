@@ -61,7 +61,10 @@ const DataTable: React.FC = () => {
                             <TableCell>{product.price}</TableCell>
                             <TableCell>
                                 {product.imageUrl ? (
-                                    <Image src={product.imageUrl} alt={product.title} style={{ width: '100px' }} />
+                                    <Image 
+                                        src={product.imageUrl} 
+                                        alt={product.title} 
+                                        style={{ width: '100px' }} />
                                 ) : (
                                     <p>No image available</p>
                                 )}

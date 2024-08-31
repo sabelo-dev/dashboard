@@ -17,13 +17,29 @@ export default function NewProduct() {
     title: "",
     description: "",
     price: 0.0,
+    image:  null as File | null, // New state to hold the selected image
   });
   const [loading, setLoading] = React.useState(false);
   const [buttonDisabled, setButtonDisabled] = React.useState(false);
+  
   const createProduct = async () => {
     try {
       setLoading(true);
-      const response = await axios.post("/api/products", product);
+      const formData = new FormData();
+
+      formData.append("title", product.title);
+      formData.append("description", product.description);
+      formData.append("price", product.price.toString());
+      if (product.image) {
+        formData.append("image", product.image);
+      }
+
+      const response = await axios.post("/api/products", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
       console.log(product);
       console.log(response);
       router.push("/products");
@@ -89,13 +105,23 @@ export default function NewProduct() {
                 }
                 placeholder="price"
               />
+              <Label>Image</Label>
+              <Input
+                className="p-2 rounded-lg mb-4 focus:outline-none"
+                id="image"
+                type="file"
+                accept="image/*"
+                onChange={(e) =>
+                  setProduct({ ...product, image: e.target.files?.[0] || null})
+                }
+              />
             </div>
           </div>
           <div className="flex items-end">
             <Button
               type="submit"
               className="border-green-600 focus:ring-0 transition duration-150 ease-in-out"
-              disabled={buttonDisabled} 
+              disabled={buttonDisabled}
             >
               {buttonDisabled ? (
                 <span className="w-full h-max rounded-md font-extrabold">
