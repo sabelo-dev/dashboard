@@ -4,6 +4,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function NewProduct() {
   const router = useRouter();
@@ -59,31 +63,43 @@ export default function NewProduct() {
         createProduct();
       }}
     >
-      <input
+      <Card className="flex flex-col mx-auto max-w-lg my-10">
+      <CardHeader>
+      <CardTitle className="text-2xl">New Product</CardTitle>
+      </CardHeader>
+        <CardContent>
+        <div className="grid gap-4">
+        <div className="grid gap-2 py-2">
+        <Input
         type="text"
         value={product.title}
         onChange={(e) => setProduct({ ...product, title: e.target.value })}
         placeholder="Product Name"
       />
-      <textarea
+      <Textarea
         value={product.description}
         onChange={(e) => setProduct({ ...product, description: e.target.value })}
         placeholder="Description"
       />
-      <input
+      <Input
         type="number"
         value={product.price}
         onChange={(e) => setProduct({ ...product, price: e.target.valueAsNumber })}
         placeholder="Price"
       />
-      <input
+      <Input
         type="file"
         accept="image/*"
         onChange={(e) => setProduct({ ...product, image: e.target.files?.[0] || null })}
       />
-      <button type="submit" disabled={buttonDisabled}>
+      <Button type="submit" disabled={buttonDisabled}>
         {loading ? "Processing..." : "Add Product"}
-      </button>
+      </Button>
+      </div>
+      </div>
+        </CardContent>
+      </Card>
+   
     </form>
   );
 }
