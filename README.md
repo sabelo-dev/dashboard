@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### The Black Market Store
 
-## Getting Started
+Welcome to The ABZU Store! Our online marketplace offers a diverse range of products curated from around the world. From fashion and electronics to home decor and more, you'll find something for everyone here. Our platform is designed to provide a seamless shopping experience with a focus on quality, convenience, and customer satisfaction.
 
-First, run the development server:
+#### Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Featured Products in Homepage:** Discover our handpicked selection of featured products directly on the homepage, showcasing the latest and most popular items.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **View Different Categories:** Easily browse through our extensive catalog by exploring different categories, making it simple to find exactly what you're looking for.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Preview Card of Product:** Get a quick glimpse of each product with preview cards, displaying essential details and images to help you make informed purchasing decisions.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Product Page with Color and Size Filters:** Dive deeper into product details on dedicated product pages, complete with color and size filters to personalize your shopping experience.
 
-## Learn More
+- **Related Items:** Explore related items to discover complementary products or alternatives, making it easy to complete your shopping list in one place.
 
-To learn more about Next.js, take a look at the following resources:
+- **Add to Cart:** Seamlessly add items to your cart with a single click, and continue browsing without interruption.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **PayFast Checkout:** Experience a secure and efficient checkout process powered by PayFast, ensuring a smooth transaction every time.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **PayFast Webhooks:** Stay updated on the status of your transactions and orders with real-time notifications and updates via PayFast webhooks.
 
-## Deploy on Vercel
+#### Tech Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Frontend:** Built using React and Next.JS 14 for a fast and responsive user interface.
+  
+- **Styling:** Styled with TailwindCSS for sleek and customizable designs.
+  
+- **Type Safety:** Utilizes TypeScript for enhanced type safety and code maintainability.
+  
+- **Authentication:** JWT and B for secure user authentication and management.
+  
+- **Data Validation:** Employing Zod for robust data validation to ensure data integrity and security.
+  
+- **File Uploads:** Leveraging S3 Bucket for seamless file uploads and management.
+  
+- **Components:** Utilizing Shadcn for reusable and customizable UI components.
+  
+- **Database:** Powered by MongoDB for efficient data management and scalability.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+#### Getting Started
+
+To start exploring The Black Market Store, simply visit our website and start browsing our diverse range of products. Whether you're searching for the latest fashion trends, cutting-edge electronics, or unique home decor items, we have something for everyone. Happy shopping!
+
+Thank you for choosing The Black Market Store. If you have any questions or feedback, please don't hesitate to reach out to us. We're here to make your shopping experience exceptional.
