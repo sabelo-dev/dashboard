@@ -26,18 +26,22 @@ const DataTable: React.FC = () => {
         const fetchProducts = async () => {
             try {
                 const response = await fetch('/api/products');
-                if (!response.ok) throw new Error('Network response was not ok');
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`Network response was not ok: ${errorText}`);
+                }
                 const data = await response.json();
                 setProducts(Array.isArray(data) ? data : []);
-            } catch (error:any) {
-                setError(error.message);
+            } catch (error: any) {
+                setError(`Fetch error: ${error.message}`);
             } finally {
                 setLoading(false);
             }
         };
-
+    
         fetchProducts();
     }, []);
+    
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
@@ -64,7 +68,10 @@ const DataTable: React.FC = () => {
                                     <Image 
                                         src={product.imageUrl} 
                                         alt={product.title} 
-                                        style={{ width: '100px' }} />
+                                        style={{ width: '100px' }} 
+                                        width={100} 
+                                        height={100} 
+                                        />
                                 ) : (
                                     <p>No image available</p>
                                 )}

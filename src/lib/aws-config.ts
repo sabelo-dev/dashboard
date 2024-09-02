@@ -1,27 +1,35 @@
+// src/lib/aws-config.ts
+
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 
 const s3Client = new S3Client({
-  region: process.env.AWS_REGION,
+  region: process.env.NEXT_PUBLIC_AWS_REGION,
   credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
+    accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID!,
+    secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY!,
   },
 });
 
-export const uploadFile = async (file: Express.Multer.File) => {
+/**
+ * Uploads a file to AWS S3
+ * @param fileBuffer - The buffer of the file to upload
+ * @param fileName - The name of the file
+ * @returns The result of the upload operation including the URL of the uploaded file
+ */
+export const uploadFile = async (fileBuffer: Buffer, fileName: string) => {
   const params = {
-    Bucket: process.env.AWS_BUCKET_NAME!,
-    Key: `${Date.now()}-${file.originalname}`,
-    Body: file.buffer,
-    ContentType: file.mimetype,
-    ACL: 'public-read' as const,
+    Bucket: process.env.NEXT_PUBLIC_AWS_BUCKET_NAME!,
+    Key: `${Date.now()}-${fileName}`,
+    Body: fileBuffer,
+    ContentType: 'image/jpeg', // Adjust based on your needs
+    // Remove ACL: 'public-read' as const,
   };
 
   const command = new PutObjectCommand(params);
   const result = await s3Client.send(command);
 
   return {
-    Location: `https://${params.Bucket}.s3.${process.env.AWS_REGION}.amazonaws.com/${params.Key}`,
+    Location: `https://${params.Bucket}.s3.${process.env.NEXT_PUBLIC_AWS_REGION}.amazonaws.com/${params.Key}`,
     ...result,
   };
 };

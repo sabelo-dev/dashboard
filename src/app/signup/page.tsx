@@ -3,9 +3,8 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import toast from "react-hot-toast";
@@ -27,7 +26,6 @@ export default function SignupPage(){
         console.log("signup successful", response.data);
         router.push("/login");
       } catch (error:any) {
-
         toast.error(error.message)
       }finally{
         setLoading(false);

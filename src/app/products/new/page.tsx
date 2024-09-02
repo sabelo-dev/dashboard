@@ -1,27 +1,19 @@
-"use client";
-
-import Layout from "@/components/Layout";
-import { Button } from "@/components/ui/button";
-import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 export default function NewProduct() {
   const router = useRouter();
-  const [product, setProduct] = React.useState({
+  const [product, setProduct] = useState({
     title: "",
     description: "",
     price: 0.0,
-    image:  null as File | null, // New state to hold the selected image
+    image: null as File | null,
   });
-  const [loading, setLoading] = React.useState(false);
-  const [buttonDisabled, setButtonDisabled] = React.useState(false);
-  
+  const [loading, setLoading] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+
   const createProduct = async () => {
     try {
       setLoading(true);
@@ -40,7 +32,6 @@ export default function NewProduct() {
         },
       });
 
-      console.log(product);
       console.log(response);
       router.push("/products");
     } catch (error: any) {
@@ -52,7 +43,7 @@ export default function NewProduct() {
   };
 
   useEffect(() => {
-    if (product.title.length > 0 && product.description.length > 0) {
+    if (product.title && product.description) {
       setButtonDisabled(false);
     } else {
       setButtonDisabled(true);
@@ -60,80 +51,37 @@ export default function NewProduct() {
   }, [product]);
 
   return (
-    <Layout>
-      <CardHeader>
-        <CardTitle className="text-2xl">
-          {loading ? "Processing" : "New Product"}
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="flex flex-col items-left w-1/2">
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            createProduct();
-          }}
-        >
-          <div className="grid gap-4">
-            <div className="grid gap-2 py-2">
-              <Label>Product Name</Label>
-              <Input
-                className="p-2 rounded-lg mb-4 focus:outline-none"
-                id="productname"
-                type="text"
-                value={product.title}
-                onChange={(e) =>
-                  setProduct({ ...product, title: e.target.value })
-                }
-                placeholder="product name"
-              />
-              <Label>Description</Label>
-              <Textarea
-                placeholder="Description"
-                value={product.description}
-                onChange={(e) =>
-                  setProduct({ ...product, description: e.target.value })
-                }
-              />
-              <Label>Price</Label>
-              <Input
-                className="p-2 rounded-lg mb-4 focus:outline-none"
-                id="price"
-                type="number"
-                value={product.price}
-                onChange={(e) =>
-                  setProduct({ ...product, price: e.target.valueAsNumber })
-                }
-                placeholder="price"
-              />
-              <Label>Image</Label>
-              <Input
-                className="p-2 rounded-lg mb-4 focus:outline-none"
-                id="image"
-                type="file"
-                accept="image/*"
-                onChange={(e) =>
-                  setProduct({ ...product, image: e.target.files?.[0] || null})
-                }
-              />
-            </div>
-          </div>
-          <div className="flex items-end">
-            <Button
-              type="submit"
-              className="border-green-600 focus:ring-0 transition duration-150 ease-in-out"
-              disabled={buttonDisabled}
-            >
-              {buttonDisabled ? (
-                <span className="w-full h-max rounded-md font-extrabold">
-                  All fields are required!!!
-                </span>
-              ) : (
-                "Add"
-              )}
-            </Button>
-          </div>
-        </form>
-      </CardContent>
-    </Layout>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        createProduct();
+      }}
+    >
+      <input
+        type="text"
+        value={product.title}
+        onChange={(e) => setProduct({ ...product, title: e.target.value })}
+        placeholder="Product Name"
+      />
+      <textarea
+        value={product.description}
+        onChange={(e) => setProduct({ ...product, description: e.target.value })}
+        placeholder="Description"
+      />
+      <input
+        type="number"
+        value={product.price}
+        onChange={(e) => setProduct({ ...product, price: e.target.valueAsNumber })}
+        placeholder="Price"
+      />
+      <input
+        type="file"
+        accept="image/*"
+        onChange={(e) => setProduct({ ...product, image: e.target.files?.[0] || null })}
+      />
+      <button type="submit" disabled={buttonDisabled}>
+        {loading ? "Processing..." : "Add Product"}
+      </button>
+    </form>
   );
 }
