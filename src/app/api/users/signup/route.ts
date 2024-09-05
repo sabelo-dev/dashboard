@@ -2,7 +2,6 @@ import dbConnect from "@/lib/mongodb";
 import User from "@/models/User";
 import bcryptjs from "bcryptjs";
 import { NextRequest, NextResponse } from "next/server";
-import { uploadFile } from "@/lib/aws-config";
 
 export async function POST(request: NextRequest) {
   await dbConnect();
@@ -12,9 +11,9 @@ export async function POST(request: NextRequest) {
     const formData = await request.formData();
 
     const username = formData.get("username") as string;
-    const contactNumber = formData.get("contactNumber") as string;
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
+    const contactNumber = formData.get("contactNumber") as string;
     const brandName = formData.get("brandName") as string;
     const brandAddress = formData.get("brandAddress") as string;
     const estDate = formData.get("estDate") as string;
@@ -33,9 +32,9 @@ export async function POST(request: NextRequest) {
     console.log("Creating new user...");
     const newUser = new User({
       username,
-      contactNumber,
       email,
       password: hashedPassword,
+      contactNumber,
       brandDetails: {
         brandName,
         brandAddress,
@@ -57,9 +56,3 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
-
-export const config = {
-  api: {
-    bodyParser: false, // Disables the default body parser, allowing formData to be parsed manually
-  },
-};
