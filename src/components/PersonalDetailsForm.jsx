@@ -40,36 +40,25 @@ const PersonalDetailsForm = ({ data, onNext }) => {
           <form onSubmit={handleSubmit}>
             <div className="grid gap-4">
               <div className="grid gap-2 py-2">
-                <Input
-                  id="name" 
+              <Input
+                  id="username" 
                   type="text" 
-                  name="name" 
-                  value={formData.name} 
+                  name="username" 
+                  value={formData.username} 
                   onChange={handleChange} 
-                  placeholder="Name" 
+                  placeholder="Username" 
                   required
-                />
+              />
               </div>
               <div className="grid gap-2 py-2">
-                <Input
-                  id="surname" 
-                  type="text" 
-                  name="surname" 
-                  value={formData.surname} 
-                  onChange={handleChange} 
-                  placeholder="Surname" 
-                />
-              </div>
-              <div className="grid gap-2 py-2">
-            <Input 
-                  id="text"
+              <Input 
+                  id="contactNumber"
                   type="text" 
                   name="contactNumber" 
                   value={formData.contactNumber} 
                   onChange={handleChange} 
                   placeholder="Contact Number" 
-                  required
-                />
+              />
               </div>
               <div className="grid gap-2 py-2">
             <Input
