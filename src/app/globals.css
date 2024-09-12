@@ -89,3 +89,10 @@
 .heart{
   animation: heartbeat 1s infinite;
 }
+
+/* styles/global.css */
+body {
+  background-color: #f2d1c0; /*nude color */
+  --tw-bg-opacity: 1;
+    background-color: rgb(31 41 55 / var(--tw-bg-opacity)) /* #1f2937 */;
+}
