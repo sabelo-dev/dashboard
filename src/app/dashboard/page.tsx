@@ -1,237 +1,213 @@
-// app/dashboard/page.tsx
-import Image from "next/image";
-import Link from "next/link";
-import {
-  ChevronLeft,
-  ChevronRight,
-  CreditCard,
-  File,
-  Home,
-  LineChart,
-  ListFilter,
-  MoreVertical,
-  Package,
-  Package2,
-  PanelLeft,
-  Search,
-  Settings,
-  ShoppingCart,
-  Truck,
-  Users2,
-  Copy,
-} from "lucide-react";
+import { Metadata } from "next"
+import Image from "next/image"
 
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-} from "@/components/ui/pagination";
-import { Progress } from "@/components/ui/progress";
-import { Separator } from "@/components/ui/separator";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+} from "@/components/ui/card"
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@/components/ui/tabs";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+} from "@/components/ui/tabs"
+import { CalendarDateRangePicker } from "@/components/date-range-picker"
+import { MainNav } from "@/components/main-nav"
+import { Overview } from "@/components/overview"
+import { RecentSales } from "@/components/recent-sales"
+import { Search } from "@/components/search"
+import TeamSwitcher from "@/components/store-switcher"
+import { UserNav } from "@/components/user-nav"
 
-export default function Dashboard() {
+export const metadata: Metadata = {
+  title: "Dashboard",
+  description: "Example dashboard app built using the components.",
+}
+
+export default function DashboardPage() {
   return (
-    <div className="flex h-screen">
-      {/* Sidebar */}
-      <aside className="w-1/6 bg-gray-800 text-white p-6 flex flex-col">
-        <div className="mb-8">
-          <h1 className="text-2xl font-bold">TRAID Admin</h1>
-        </div>
-        <nav className="flex flex-col space-y-2">
-          <Link href="/dashboard" className="flex items-center p-2 rounded-md hover:bg-gray-700">
-            <Home className="mr-2" /> Home
-          </Link>
-          <Link href="/orders" className="flex items-center p-2 rounded-md hover:bg-gray-700">
-            <ShoppingCart className="mr-2" /> Orders
-          </Link>
-          <Link href="/products" className="flex items-center p-2 rounded-md hover:bg-gray-700">
-            <Package className="mr-2" /> Products
-          </Link>
-          <Link href="/customers" className="flex items-center p-2 rounded-md hover:bg-gray-700">
-            <Users2 className="mr-2" /> Customers
-          </Link>
-          <Link href="/settings" className="flex items-center p-2 rounded-md hover:bg-gray-700">
-            <Settings className="mr-2" /> Settings
-          </Link>
-        </nav>
-      </aside>
-
-      {/* Main Content Area */}
-      <div className="flex-1 p-6 bg-gray-100">
-        {/* Header */}
-        <header className="flex items-center justify-between mb-6 border-b border-gray-300 pb-4">
-          <div className="flex items-center space-x-4">
-            <Input placeholder="Search..." className="w-64" />
-            <Button>
-              <Search />
-            </Button>
-          </div>
-          <DropdownMenu>
-            <DropdownMenuTrigger>
-              <MoreVertical />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuItem>
-                <Copy /> Copy
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <File /> Export
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <Settings /> Settings
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </header>
-
-        {/* Main Content */}
-        <main>
-          {/* Breadcrumb */}
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/">Home</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator>/</BreadcrumbSeparator>
-              <BreadcrumbItem>
-                <BreadcrumbPage>Dashboard</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-
-          {/* Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Total Sales</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <LineChart className="w-full h-40" />
-                <CardDescription>$12,345</CardDescription>
-              </CardContent>
-              <CardFooter>
-                <Button>View Details</Button>
-              </CardFooter>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle>Total Orders</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>1,234</CardDescription>
-              </CardContent>
-              <CardFooter>
-                <Button>View Details</Button>
-              </CardFooter>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle>Total Customers</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>567</CardDescription>
-              </CardContent>
-              <CardFooter>
-                <Button>View Details</Button>
-              </CardFooter>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle>Total Products</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>89</CardDescription>
-              </CardContent>
-              <CardFooter>
-                <Button>View Details</Button>
-              </CardFooter>
-            </Card>
-          </div>
-
-          {/* Orders Table */}
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Order ID</TableHead>
-                <TableHead>Customer</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Amount</TableHead>
-                <TableHead>Date</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {/* Add rows dynamically here */}
-              <TableRow>
-                <TableCell>ORD12345</TableCell>
-                <TableCell>John Doe</TableCell>
-                <TableCell>Shipped</TableCell>
-                <TableCell>$123.45</TableCell>
-                <TableCell>2024-09-10</TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-
-          {/* Pagination */}
-          {/*
-            <Pagination>
-            <PaginationContent>
-              <PaginationItem>1</PaginationItem>
-              <PaginationItem>2</PaginationItem>
-              <PaginationItem>3</PaginationItem>
-            </PaginationContent>
-          </Pagination>
-          */}
-          
-        </main>
+    <>
+      <div className="md:hidden">
+        <Image
+          src="/examples/dashboard-light.png"
+          width={1280}
+          height={866}
+          alt="Dashboard"
+          className="block dark:hidden"
+        />
+        <Image
+          src="/examples/dashboard-dark.png"
+          width={1280}
+          height={866}
+          alt="Dashboard"
+          className="hidden dark:block"
+        />
       </div>
-    </div>
-  );
+      <div className="hidden flex-col md:flex">
+        <div className="border-b">
+          <div className="flex h-16 items-center px-4">
+            <TeamSwitcher />
+            <MainNav className="mx-6" />
+            <div className="ml-auto flex items-center space-x-4">
+              <Search />
+              <UserNav />
+            </div>
+          </div>
+        </div>
+        <div className="flex-1 space-y-4 p-8 pt-6">
+          <div className="flex items-center justify-between space-y-2">
+            <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
+            <div className="flex items-center space-x-2">
+              <CalendarDateRangePicker />
+              <Button>Download</Button>
+            </div>
+          </div>
+          <Tabs defaultValue="overview" className="space-y-4">
+            <TabsList>
+              <TabsTrigger value="overview">Overview</TabsTrigger>
+              <TabsTrigger value="analytics" disabled>
+                Analytics
+              </TabsTrigger>
+              <TabsTrigger value="reports" disabled>
+                Reports
+              </TabsTrigger>
+              <TabsTrigger value="notifications" disabled>
+                Notifications
+              </TabsTrigger>
+            </TabsList>
+            <TabsContent value="overview" className="space-y-4">
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                <Card>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">
+                      Total Revenue
+                    </CardTitle>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      className="h-4 w-4 text-muted-foreground"
+                    >
+                      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    </svg>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">$45,231.89</div>
+                    <p className="text-xs text-muted-foreground">
+                      +20.1% from last month
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">
+                      Subscriptions
+                    </CardTitle>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      className="h-4 w-4 text-muted-foreground"
+                    >
+                      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                      <circle cx="9" cy="7" r="4" />
+                      <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+                    </svg>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">+2350</div>
+                    <p className="text-xs text-muted-foreground">
+                      +180.1% from last month
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Sales</CardTitle>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      className="h-4 w-4 text-muted-foreground"
+                    >
+                      <rect width="20" height="14" x="2" y="5" rx="2" />
+                      <path d="M2 10h20" />
+                    </svg>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">+12,234</div>
+                    <p className="text-xs text-muted-foreground">
+                      +19% from last month
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">
+                      Active Now
+                    </CardTitle>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      className="h-4 w-4 text-muted-foreground"
+                    >
+                      <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                    </svg>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">+573</div>
+                    <p className="text-xs text-muted-foreground">
+                      +201 since last hour
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+                <Card className="col-span-4">
+                  <CardHeader>
+                    <CardTitle>Overview</CardTitle>
+                  </CardHeader>
+                  <CardContent className="pl-2">
+                    <Overview />
+                  </CardContent>
+                </Card>
+                <Card className="col-span-3">
+                  <CardHeader>
+                    <CardTitle>Recent Sales</CardTitle>
+                    <CardDescription>
+                      You made 265 sales this month.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <RecentSales />
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
+          </Tabs>
+        </div>
+      </div>
+    </>
+  )
 }

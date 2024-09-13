@@ -1,66 +1,23 @@
 "use client";
 
-import React, { ReactNode } from 'react';
-import Nav from "@/components/Nav"
-import {
-  ChevronLeft,
-  ChevronRight,
-  CreditCard,
-  File,
-  Home,
-  LineChart,
-  ListFilter,
-  MoreVertical,
-  Package,
-  Package2,
-  PanelLeft,
-  Search,
-  Settings,
-  ShoppingCart,
-  Truck,
-  Users2,
-  Copy,
-} from "lucide-react";
-import { Input } from './ui/input';
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator } from '@radix-ui/react-dropdown-menu';
-import { Button } from './ui/button';
+import React, { ReactNode } from "react";
+import Header from "@/components/Header";
+import Subheader from "@/components/Subheader"; // Import the Subheader component
 
 interface LayoutProps {
   children: ReactNode;
 }
 
-export default function Layout({ children }: LayoutProps) {  
+export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="flex h-screen">
-      <Nav />
-      
+    <div className="flex flex-col h-screen">
+      {/* Header on top */}
+      <Header />
+      {/* Subheader */}
+      {/*<Subheader />*/}
+      {/* Main content area */}
       <div className="flex-1 p-6 bg-gray-100">
-        {/* Header */}
-        <header className="flex items-center justify-between mb-6 border-b border-gray-300 pb-4">
-          <div className="flex items-center space-x-4">
-            <Input placeholder="Search..." className="w-64" />
-            <Button>
-              <Search />
-            </Button>
-          </div>
-          <DropdownMenu>
-            <DropdownMenuTrigger>
-              <MoreVertical />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuItem>
-                <Copy /> Copy
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <File /> Export
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <Settings /> Settings
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </header>
+        {/* Page content */}
         {children}
       </div>
     </div>
