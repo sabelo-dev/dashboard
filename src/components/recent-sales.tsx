@@ -6,7 +6,7 @@ import {
   
   export function RecentSales() {
     return (
-      <div className="space-y-8">
+      <div className="space-y-8">{/*
         <div className="flex items-center">
           <Avatar className="h-9 w-9">
             <AvatarImage src="/avatars/01.png" alt="Avatar" />
@@ -65,7 +65,7 @@ import {
             <p className="text-sm text-muted-foreground">sofia.davis@email.com</p>
           </div>
           <div className="ml-auto font-medium">+$39.00</div>
-        </div>
+        </div>*/}
       </div>
     )
   }

@@ -90,4 +90,7 @@
   animation: heartbeat 1s infinite;
 }
 
-
+.active {
+  font-weight: bold;
+  border-bottom: 2px solid #000; /* Add any active tab styles here */
+}

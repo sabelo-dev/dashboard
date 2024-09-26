@@ -45,7 +45,7 @@ export default function LoginPage(){
         <Card className="flex flex-col mx-auto max-w-lg my-10">
             <div className="heart flex flex-col items-center py-6">
               <Image
-                src="/heart.png"
+                src="/triad.png"
                 alt="Picture of the author"
                 width={50}
                 height={50}

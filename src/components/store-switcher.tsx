@@ -49,94 +49,94 @@ import {
 
 const groups = [
   {
-    label: "Personal Account",
-    teams: [
+    label: "Brand Account",
+    Stores: [
       {
-        label: "Alicia Koch",
-        value: "personal",
+        label: "Triad",
+        value: "brand",
       },
     ],
   },
   {
-    label: "Teams",
-    teams: [
+    label: "Stores",
+    Stores: [
       {
-        label: "Acme Inc.",
-        value: "acme-inc",
+        label: "Triad Inc.",
+        value: "triad-inc",
       },
       {
-        label: "Monsters Inc.",
-        value: "monsters",
+        label: "Triad Inc.",
+        value: "triaduan",
       },
     ],
   },
 ]
 
-type Team = (typeof groups)[number]["teams"][number]
+type Store = (typeof groups)[number]["Stores"][number]
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverTrigger>
 
-interface TeamSwitcherProps extends PopoverTriggerProps {}
+interface StoreSwitcherProps extends PopoverTriggerProps {}
 
-export default function TeamSwitcher({ className }: TeamSwitcherProps) {
+export default function StoreSwitcher({ className }: StoreSwitcherProps) {
   const [open, setOpen] = React.useState(false)
-  const [showNewTeamDialog, setShowNewTeamDialog] = React.useState(false)
-  const [selectedTeam, setSelectedTeam] = React.useState<Team>(
-    groups[0].teams[0]
+  const [showNewStoreDialog, setShowNewStoreDialog] = React.useState(false)
+  const [selectedStore, setSelectedStore] = React.useState<Store>(
+    groups[0].Stores[0]
   )
 
   return (
-    <Dialog open={showNewTeamDialog} onOpenChange={setShowNewTeamDialog}>
+    <Dialog open={showNewStoreDialog} onOpenChange={setShowNewStoreDialog}>
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            aria-label="Select a team"
+            aria-label="Select a Store"
             className={cn("w-[200px] justify-between", className)}
           >
             <Avatar className="mr-2 h-5 w-5">
               <AvatarImage
-                src={`https://avatar.vercel.sh/${selectedTeam.value}.png`}
-                alt={selectedTeam.label}
+                src={`/triad.png`}
+                alt={selectedStore.label}
                 className="grayscale"
               />
-              <AvatarFallback>SC</AvatarFallback>
+              <AvatarFallback>TS</AvatarFallback>
             </Avatar>
-            {selectedTeam.label}
+            {selectedStore.label}
             <CaretSortIcon className="ml-auto h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-[200px] p-0">
           <Command>
-            <CommandInput placeholder="Search team..." />
+            <CommandInput placeholder="Search Store..." />
             <CommandList>
-              <CommandEmpty>No team found.</CommandEmpty>
+              <CommandEmpty>No Store found.</CommandEmpty>
               {groups.map((group) => (
                 <CommandGroup key={group.label} heading={group.label}>
-                  {group.teams.map((team) => (
+                  {group.Stores.map((Store) => (
                     <CommandItem
-                      key={team.value}
+                      key={Store.value}
                       onSelect={() => {
-                        setSelectedTeam(team)
+                        setSelectedStore(Store)
                         setOpen(false)
                       }}
                       className="text-sm"
                     >
                       <Avatar className="mr-2 h-5 w-5">
                         <AvatarImage
-                          src={`https://avatar.vercel.sh/${team.value}.png`}
-                          alt={team.label}
+                          src={`${Store.value}.png`}
+                          alt={Store.label}
                           className="grayscale"
                         />
-                        <AvatarFallback>SC</AvatarFallback>
+                        <AvatarFallback>TS</AvatarFallback>
                       </Avatar>
-                      {team.label}
+                      {Store.label}
                       <CheckIcon
                         className={cn(
                           "ml-auto h-4 w-4",
-                          selectedTeam.value === team.value
+                          selectedStore.value === Store.value
                             ? "opacity-100"
                             : "opacity-0"
                         )}
@@ -153,11 +153,11 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
                   <CommandItem
                     onSelect={() => {
                       setOpen(false)
-                      setShowNewTeamDialog(true)
+                      setShowNewStoreDialog(true)
                     }}
                   >
                     <PlusCircledIcon className="mr-2 h-5 w-5" />
-                    Create Team
+                    Create Store
                   </CommandItem>
                 </DialogTrigger>
               </CommandGroup>
@@ -167,15 +167,15 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
       </Popover>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Create team</DialogTitle>
+          <DialogTitle>Create Store</DialogTitle>
           <DialogDescription>
-            Add a new team to manage products and customers.
+            Add a new Store to manage products and customers.
           </DialogDescription>
         </DialogHeader>
         <div>
           <div className="space-y-4 py-2 pb-4">
             <div className="space-y-2">
-              <Label htmlFor="name">Team name</Label>
+              <Label htmlFor="name">Store name</Label>
               <Input id="name" placeholder="Acme Inc." />
             </div>
             <div className="space-y-2">
@@ -188,13 +188,13 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
                   <SelectItem value="free">
                     <span className="font-medium">Free</span> -{" "}
                     <span className="text-muted-foreground">
-                      Trial for two weeks
+                      Trial for eight weeks
                     </span>
                   </SelectItem>
                   <SelectItem value="pro">
                     <span className="font-medium">Pro</span> -{" "}
                     <span className="text-muted-foreground">
-                      $9/month per user
+                      R99/month per user
                     </span>
                   </SelectItem>
                 </SelectContent>
@@ -203,7 +203,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
           </div>
         </div>
         <DialogFooter>
-          <Button variant="outline" onClick={() => setShowNewTeamDialog(false)}>
+          <Button variant="outline" onClick={() => setShowNewStoreDialog(false)}>
             Cancel
           </Button>
           <Button type="submit">Continue</Button>
