@@ -2,7 +2,6 @@
 
 import React, { ReactNode } from "react";
 import Header from "@/components/Header";
-import Subheader from "@/components/Subheader"; // Import the Subheader component
 
 interface LayoutProps {
   children: ReactNode;
