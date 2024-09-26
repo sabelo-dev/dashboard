@@ -1,7 +1,5 @@
 import React from "react"
 import Link from "next/link"
-import { CircleUser, Menu, Package2, Search } from "lucide-react"
-
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -14,9 +12,6 @@ import {
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import Nav from "@/components/Nav"
-
-export const description =
-  "The settings page has a sidebar navigation and a main content area. The main content area has a form to update the store name and a form to update the plugins directory. The sidebar navigation has links to general, security, integrations, support, organizations, and advanced settings."
 
 export default function SettingsPage() {
   return (
