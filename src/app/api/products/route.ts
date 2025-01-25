@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
     }
 
     const imageBuffer = await blobToBuffer(imageFile);
-    const result = await uploadFile(imageBuffer, "products/" + imageFile.name);
+    const result = await uploadFile(imageBuffer, "products/" + imageFile);
     const imageUrl = result.Location;
 
     const newProduct = new Product({
