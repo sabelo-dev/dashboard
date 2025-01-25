@@ -1,17 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Metadata } from "next"
 import Image from "next/image"
 
 import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
 import {
   Tabs,
   TabsContent,
@@ -20,8 +12,6 @@ import {
 } from "@/components/ui/tabs"
 import { CalendarDateRangePicker } from "@/components/date-range-picker"
 import { MainNav } from "@/components/main-nav"
-import { Overview } from "@/components/overview"
-import { RecentSales } from "@/components/recent-sales"
 import { Search } from "@/components/search"
 import StoreSwitcher from "@/components/store-switcher"
 import { UserNav } from "@/components/user-nav"
