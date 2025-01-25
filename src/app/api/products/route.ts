@@ -2,6 +2,7 @@ import dbConnect from "@/lib/mongodb";
 import { NextRequest, NextResponse } from "next/server";
 import Product from "@/models/Product";
 import { uploadFile } from "@/lib/aws-config";
+import { url } from "inspector";
 
 let waitingClients: Array<(response: NextResponse) => void> = [];
 
@@ -22,8 +23,13 @@ function notifyClients(newProduct: any) {
  * Handle CORS headers for responses
  * @param response - The NextResponse object
  */
+
+interface url{
+  corsUrl: string
+}
+
 function setCorsHeaders(response: NextResponse) {
-  response.headers.set("Access-Control-Allow-Origin", process.env.PUBLIC_ACCESS_ORIGIN_URL);
+  response.headers.set("Access-Control-Allow-Origin", "http://localhost:3000");
   response.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   return response;
 }
