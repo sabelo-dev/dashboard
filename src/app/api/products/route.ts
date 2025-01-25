@@ -23,7 +23,7 @@ function notifyClients(newProduct: any) {
  * @param response - The NextResponse object
  */
 function setCorsHeaders(response: NextResponse) {
-  response.headers.set("Access-Control-Allow-Origin", "http://localhost:3001");
+  response.headers.set("Access-Control-Allow-Origin", process.env.PUBLIC_ACCESS_ORIGIN_URL);
   response.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   return response;
 }
