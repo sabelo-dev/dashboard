@@ -100,8 +100,9 @@ export async function GET(request: NextRequest) {
 
 /**
  * GET: Long polling for new products
+ * Instead of a separate "POLL" method, use GET for polling.
  */
-export async function POLL(request: NextRequest) {
+export async function GET_POLL(request: NextRequest) {
   return new Promise<NextResponse>((resolve) => {
     waitingClients.push(resolve);
 
