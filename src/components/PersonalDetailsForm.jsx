@@ -33,7 +33,7 @@ const PersonalDetailsForm = ({ data, onNext }) => {
       <CardHeader>
       <CardTitle className="text-2xl">Personal Details</CardTitle>
       <CardDescription>
-        Enter your details below to register to ABZU
+        Become a member of TRIAD Corp. Enter your details below!
       </CardDescription>
       </CardHeader>
       <CardContent>

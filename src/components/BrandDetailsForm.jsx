@@ -4,10 +4,12 @@ import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useRouter } from "next/navigation";
 
 const BrandDetailsForm = ({ data, onNext, onPrevious }) => {
   const [formData, setFormData] = useState(data);
   const [errorMessage, setErrorMessage] = useState("");
+  const router = useRouter();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,32 +18,37 @@ const BrandDetailsForm = ({ data, onNext, onPrevious }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const form = new FormData();
-    for (const key in formData) {
-      form.append(key, formData[key]);
+  
+    // Perform client-side validation
+    if (!formData.brandName || !formData.brandAddress || !formData.estDate) {
+      setErrorMessage("All fields are required.");
+      return;
     }
-
+  
     try {
       const response = await fetch("/api/users/signup", {
         method: "POST",
-        body: form, // Send the form data
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData), // Send data as JSON
       });
-
+  
       if (!response.ok) {
-        throw new Error("Failed to create account");
+        // Extract error message from the server's response
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to create account");
       }
-
+  
       const result = await response.json();
       if (result.success) {
-        onNext(formData);
+        router.push("/login");
       } else {
         setErrorMessage(result.message || "Failed to create account");
       }
     } catch (error) {
-      setErrorMessage(error.message);
+      setErrorMessage(error.message); // Display error message to the user
     }
   };
+  
 
   return (
     <Card className="mx-auto max-w-lg">
@@ -84,7 +91,7 @@ const BrandDetailsForm = ({ data, onNext, onPrevious }) => {
             {errorMessage && (
               <div className="text-red-500 text-sm py-2">{errorMessage}</div>
             )}
-            <div className="grid gap-2 justify-between items-center space-x-4">
+            <div className="flex justify-between items-center">
               <Button type="button" onClick={onPrevious}>
                 Previous
               </Button>

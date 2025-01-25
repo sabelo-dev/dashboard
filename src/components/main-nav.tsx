@@ -18,33 +18,33 @@ export function MainNav({
         Overview
       </Link>
       <Link
-        href="/dashboard/products"
+        href="/products"
         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
       >
         Products
       </Link>
       
       <Link
-        href="/dashboard/categories"
+        href="/categories"
         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
       >
         Categories
       </Link>
       
       <Link
-        href="/dashboard/orders"
+        href="/orders"
         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
       >
         Orders
       </Link>
       <Link
-        href="/dashboard/customers"
+        href="/customers"
         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
       >
         Customers
       </Link>
       <Link
-        href="/dashboard/settings"
+        href="/settings"
         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
       >
         Settings
