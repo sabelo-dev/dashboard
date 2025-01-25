@@ -33,7 +33,7 @@ function setCorsHeaders(response: NextResponse) {
  * @param blob - The Blob object
  */
 async function blobToBuffer(blob: Blob): Promise<Buffer> {
-  const myBuffer =  Buffer.from(await blob.arrayBuffer());
+  const myBuffer = Buffer.from(await blob.arrayBuffer());
   console.log(myBuffer);
   return myBuffer;
 }
@@ -86,6 +86,31 @@ export async function POST(request: NextRequest) {
  * GET: Retrieve all products
  */
 export async function GET(request: NextRequest) {
+  // Check if this is a polling request (e.g., through query param or URL)
+  const isPolling = request.nextUrl.searchParams.get("poll") === "true";
+
+  if (isPolling) {
+    // Long Polling Logic
+    return new Promise<NextResponse>((resolve) => {
+      waitingClients.push(resolve);
+
+      // Timeout after 30 seconds
+      const timeout = setTimeout(() => {
+        resolve(
+          setCorsHeaders(NextResponse.json({ message: "No new products" }, { status: 204 }))
+        );
+
+        const index = waitingClients.indexOf(resolve);
+        if (index !== -1) waitingClients.splice(index, 1);
+      }, 30000);
+
+      // Cleanup logic
+      const cleanup = () => clearTimeout(timeout);
+      Promise.resolve().finally(cleanup);
+    });
+  }
+
+  // Regular GET request to retrieve all products
   try {
     await dbConnect();
     const products = await Product.find({});
@@ -96,28 +121,4 @@ export async function GET(request: NextRequest) {
       NextResponse.json({ message: "Failed to fetch products" }, { status: 500 })
     );
   }
-}
-
-/**
- * GET: Long polling for new products
- * Instead of a separate "POLL" method, use GET for polling.
- */
-export async function GET_POLL(request: NextRequest) {
-  return new Promise<NextResponse>((resolve) => {
-    waitingClients.push(resolve);
-
-    // Timeout after 30 seconds
-    const timeout = setTimeout(() => {
-      resolve(
-        setCorsHeaders(NextResponse.json({ message: "No new products" }, { status: 204 }))
-      );
-
-      const index = waitingClients.indexOf(resolve);
-      if (index !== -1) waitingClients.splice(index, 1);
-    }, 30000);
-
-    // Cleanup logic
-    const cleanup = () => clearTimeout(timeout);
-    Promise.resolve().finally(cleanup);
-  });
 }
