@@ -1,8 +1,8 @@
-### Triad Corp Makertplace
+WWCorp Ecommerce
 
-Welcome to Triad Corp Makertplace! Our online marketplace offers a diverse range of products curated from around the world. From fashion and electronics to home decor and more, you'll find something for everyone here. Our platform is designed to provide a seamless shopping experience with a focus on quality, convenience, and customer satisfaction.
+Welcome to WWC Ecommerce! Our online marketplace offers a diverse range of products curated from around the world. From fashion and electronics to home decor and more, you'll find something for everyone here. Our platform is designed to provide a seamless shopping experience with a focus on quality, convenience, and customer satisfaction.
 
-#### Features
+Features
 
 - Featured Products in Homepage: 
 Discover our handpicked selection of featured products directly on the homepage, showcasing the latest and most popular items.
@@ -56,6 +56,6 @@ Powered by MongoDB for efficient data management and scalability.
 
 Getting Started
 
-To start exploring Triad Corp Makertplace, simply visit our website and start browsing our diverse range of products. Whether you're searching for the latest fashion trends, cutting-edge electronics, or unique home decor items, we have something for everyone. Happy shopping!
+To start exploring WWC Ecommerce, simply visit our website and start browsing our diverse range of products. Whether you're searching for the latest fashion trends, cutting-edge electronics, or unique home decor items, we have something for everyone. Happy shopping!
 
 Thank you for choosing Triad Corp Makertplace. If you have any questions or feedback, please don't hesitate to reach out to us. We're here to make your shopping experience exceptional.
